@@ -1,16 +1,16 @@
 # Daily Org Chart
 
-This is a site to help users better organize their days, weeks, months and years.  It can be helpful with you daily work assisgnment, tasks around the house or simply keeping your healthy under control.
+This is a site to help users better organize their days, weeks, months and years. It can be helpful with you daily work assisgnment, tasks around the house or simply keeping your healthy under control.
 
 [Deployed Site] (https://daily-org-chart.netlify.app/)
 
 ## Features
 
 ### MVP (Most Viable Product)
+
 - User can click record daily tasks
 - Data will be made available in a list format or calendar format
 - Daily and Monthly views will be available
-
 
 ### Nice To Haves
 

@@ -1,9 +1,3 @@
-# React + Vite
+# Daily Org Chart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# daily-org-chart
+This is a site to help users better organize their days, weeks, months and years.  It can be helpful with you daily work assisgnment, tasks around the house or simply keeping your healthy under control.  

@@ -42,13 +42,13 @@ function ScheduleOrganizer() {
 
   return (
     <div>
-      <h1>Schedule Organizer</h1>
+      <h3>Tasks</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={schedule}
           onChange={handleChange}
-          placeholder="Enter Schedule"
+          placeholder="Enter Task"
         />
         <button type="submit">{editIndex !== null ? 'Update' : 'Add'}</button>
       </form>

@@ -11,5 +11,12 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  
+}
+
+h1 {
+  padding: 10vh;
+}
+
+h2 {
+  padding: 5vh;
 }

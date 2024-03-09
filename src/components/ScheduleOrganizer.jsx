@@ -19,11 +19,15 @@ function ScheduleOrganizer() {
     if (schedule.trim() !== '') {
       if (editIndex !== null) {
         const updatedScheduleList = [...scheduleList];
-        updatedScheduleList[editIndex] = schedule;
+        updatedScheduleList[editIndex].task = editValue;
         setScheduleList(updatedScheduleList);
         setEditIndex(null);
+        setEditValue('');
       } else {
-        setScheduleList([...scheduleList, schedule]);
+        setScheduleList([
+          ...scheduleList,
+          { task: schedule, completed: false, timestamp: null },
+        ]);
       }
       setSchedule('');
     }
@@ -31,7 +35,7 @@ function ScheduleOrganizer() {
 
   const handleEdit = (index) => {
     setEditIndex(index);
-    setEditValue(scheduleList[index]);
+    setEditValue(scheduleList[index].task);
   };
 
   const handleDelete = (index) => {
@@ -40,21 +44,33 @@ function ScheduleOrganizer() {
     setScheduleList(updatedScheduleList);
   };
 
+  const handleComplete = (index) => {
+    const updatedScheduleList = [...scheduleList];
+    updatedScheduleList[index].completed = true;
+    updatedScheduleList[index].timestamp = new Date().toLocaleString();
+    setScheduleList(updatedScheduleList);
+  };
+
   return (
     <div>
-      <h3>Tasks</h3>
+      <h1>Schedule Organizer</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={schedule}
-          onChange={handleChange}
-          placeholder="Enter Task"
+          value={editIndex !== null ? editValue : schedule}
+          onChange={editIndex !== null ? handleEditChange : handleChange}
+          placeholder="Enter Schedule"
         />
         <button type="submit">{editIndex !== null ? 'Update' : 'Add'}</button>
       </form>
       <ul>
         {scheduleList.map((schedule, index) => (
           <li key={index}>
+            <input
+              type="checkbox"
+              checked={schedule.completed}
+              onChange={() => handleComplete(index)}
+            />
             {editIndex === index ? (
               <input
                 type="text"
@@ -62,7 +78,16 @@ function ScheduleOrganizer() {
                 onChange={handleEditChange}
               />
             ) : (
-              schedule
+              <span
+                style={{
+                  textDecoration: schedule.completed ? 'line-through' : 'none',
+                }}
+              >
+                {schedule.task}
+              </span>
+            )}
+            {schedule.completed && (
+              <span> Completed at: {schedule.timestamp}</span>
             )}
             <button
               onClick={() =>

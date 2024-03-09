@@ -53,9 +53,9 @@ function ScheduleOrganizer() {
 
   return (
     <div>
-      <h1>Schedule Organizer</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      <h1 className="p-3">Enter Tasks</h1>
+      <form className="p-5" onSubmit={handleSubmit}>
+        <input 
           type="text"
           value={editIndex !== null ? editValue : schedule}
           onChange={editIndex !== null ? handleEditChange : handleChange}
@@ -63,43 +63,48 @@ function ScheduleOrganizer() {
         />
         <button type="submit">{editIndex !== null ? 'Update' : 'Add'}</button>
       </form>
-      <ul>
-        {scheduleList.map((schedule, index) => (
-          <li key={index}>
-            <input
-              type="checkbox"
-              checked={schedule.completed}
-              onChange={() => handleComplete(index)}
-            />
-            {editIndex === index ? (
+
+      <div className="border solid w-50 mx-auto ab-3">
+        <ul>
+          {scheduleList.map((schedule, index) => (
+            <li key={index}>
               <input
-                type="text"
-                value={editValue}
-                onChange={handleEditChange}
+                type="checkbox"
+                checked={schedule.completed}
+                onChange={() => handleComplete(index)}
               />
-            ) : (
-              <span
-                style={{
-                  textDecoration: schedule.completed ? 'line-through' : 'none',
-                }}
+              {editIndex === index ? (
+                <input
+                  type="text"
+                  value={editValue}
+                  onChange={handleEditChange}
+                />
+              ) : (
+                <span
+                  style={{
+                    textDecoration: schedule.completed
+                      ? 'line-through'
+                      : 'none',
+                  }}
+                >
+                  {schedule.task}
+                </span>
+              )}
+              {schedule.completed && (
+                <span> Completed at: {schedule.timestamp}</span>
+              )}
+              <button
+                onClick={() =>
+                  editIndex === index ? handleSubmit({}) : handleEdit(index)
+                }
               >
-                {schedule.task}
-              </span>
-            )}
-            {schedule.completed && (
-              <span> Completed at: {schedule.timestamp}</span>
-            )}
-            <button
-              onClick={() =>
-                editIndex === index ? handleSubmit({}) : handleEdit(index)
-              }
-            >
-              {editIndex === index ? 'Save' : 'Edit'}
-            </button>
-            <button onClick={() => handleDelete(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+                {editIndex === index ? 'Save' : 'Edit'}
+              </button>
+              <button onClick={() => handleDelete(index)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

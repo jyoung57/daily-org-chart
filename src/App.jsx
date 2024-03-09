@@ -21,7 +21,7 @@ function App() {
     <>
       <Header />
 
-      <Main taskData={taskData}/>
+      <Main />
 
       <Footer />
     </>
